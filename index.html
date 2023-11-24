@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вычисление площади треугольника</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 200px;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        p {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Вычисление площади треугольника</h2>
+
+    <form id="triangleForm">
+        <label for="sideA">Сторона A:</label>
+        <input type="number" id="sideA" required>
+        <br>
+        <label for="sideB">Сторона B:</label>
+        <input type="number" id="sideB" required>
+        <br>
+        <label for="sideC">Сторона C:</label>
+        <input type="number" id="sideC" required>
+        <br>
+        <button type="button" onclick="calculateArea()">Вычислить площадь</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        function calculateArea() {
+            var sideA = parseFloat(document.getElementById("sideA").value);
+            var sideB = parseFloat(document.getElementById("sideB").value);
+            var sideC = parseFloat(document.getElementById("sideC").value);
+
+            // Проверка наличия введенных значений и являются ли они положительными числами
+            if (!isNaN(sideA) && !isNaN(sideB) && !isNaN(sideC) && sideA > 0 && sideB > 0 && sideC > 0) {
+                // Полупериметр
+                var s = (sideA + sideB + sideC) / 2;
+
+                // Формула Герона для вычисления площади треугольника
+                var area = Math.sqrt(s * (s - sideA) * (s - sideB) * (s - sideC));
+
+                document.getElementById("result").innerHTML = "Площадь треугольника: " + area.toFixed(2);
+            } else {
+                document.getElementById("result").innerHTML = "Введите корректные значения сторон треугольника.";
+            }
+        }
+    </script>
+
+</body>
+</html>
